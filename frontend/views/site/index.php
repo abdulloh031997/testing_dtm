@@ -236,8 +236,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="card-subtitle">10- ~</div>
                             <hr class="cell-divide-hr">
                             <div class="price">
-                                <span class="currency">1</span><span class="value">20 000</span>
-                                <div class="frequency">so'm  1 yilga</div>
+                                <span class="currency"></span><span class="value">20 000</span>
+                                <div class="frequency">so'm 1 yilga</div>
                             </div>
                             <hr class="cell-divide-hr">
                             <ul class="list-unstyled li-space-lg">

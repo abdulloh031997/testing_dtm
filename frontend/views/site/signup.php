@@ -5,6 +5,7 @@
 /* @var $model \frontend\models\SignupForm */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Signup';
@@ -22,8 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <?= $form->field($model, 'password',['template' =>'{input}<label class="label-control" for="cname">{label}</label><div class="help-block with-errors"></div>'])->passwordInput(['id'=>'cemail','autofocus' => true ,'class' =>'form-control-input']) ?>
 
-                        <div class="form-group">
-                            <?= Html::submitButton('Ro\'yxatdan o\'tish', ['class' => 'form-control-submit-button disabled', 'name' => 'signup-button']) ?>
+                        <div class="form-group d-flex" style="justify-content: space-between;">
+                            <?= Html::submitButton('Ro\'yxatdan o\'tish', ['class' => 'w-75 form-control-submit-button disabled', 'name' => 'signup-button']) ?> <a href="<?=Url::to(['/site/login'])?>" class="text-center pt-3 w-25" style="font-weight: bold;">Kirish</a>
                         </div>
                         <?php ActiveForm::end(); ?>
                     </div> <!-- end of col -->
