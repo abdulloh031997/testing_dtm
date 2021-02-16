@@ -75,30 +75,14 @@ use yii\bootstrap\Html;
                     <div class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown">
                             <img src="..\files\assets\images\avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                            <span>John Doe</span>
+                            <span><?=Yii::$app->user->identity->username?></span>
                             <i class="feather icon-chevron-down"></i>
                         </div>
                         <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                            <!-- <li>
-                                <a href="#!">
-                                    <i class="feather icon-settings"></i> Settings
-                                </a>
-                            </li> -->
                             <li>
                                 <a class="dropdown-item"><i class="feather icon-user"></i><span class="item-text">Profile</span></a>
                             </li>
-                            <!-- <li>
-                                <a href="email-inbox.htm">
-                                    <i class="feather icon-mail"></i> My Messages
-                                </a>
-                            </li> -->
-                            <!-- <li>
-                                <a href="auth-lock-screen.htm">
-                                    <i class="feather icon-lock"></i> Lock Screen
-                                </a>
-                            </li> -->
                             <li>
-                                
                                 <?= Html::beginForm(\yii\helpers\Url::base(true) . '/site/logout', "POST");?>
                                     <button type="submit" class="m-0 p-0" style="border: none; background: none;"><i class="feather icon-log-out"></i><span class="item-text">Tizimdan chiqish</span></button>
                                 <?= Html::endform();?>

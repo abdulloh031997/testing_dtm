@@ -1,27 +1,24 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $name string */
-/* @var $message string */
-/* @var $exception Exception */
+use yii\helpers\Url;
 
-use yii\helpers\Html;
-
-$this->title = $name;
 ?>
-<div class="site-error">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
-    </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
+<div id="container" class="container">
+    <ul id="scene" class="scene">
+        <?php if ($exception->statusCode == '404') : ?>
+            <li class="layer" data-depth="1.00"><img src="../images/404-01.png"></li>
+            <li class="layer" data-depth="0.60"><img src="../images/shadows-01.png"></li>
+            <li class="layer" data-depth="0.20"><img src="../images/monster-01.png"></li>
+            <li class="layer" data-depth="0.40"><img src="../images/text-01.png"></li>
+            <li class="layer" data-depth="0.10"><img src="../images/monster-eyes-01.png"></li>
+        <?php endif ?>
+    </ul>
+    <a href="<?= Url::to(['dashboard/index']) ?>" class="btn">Orqaga</a>
 </div>
+<!-- Scripts -->
+<script src="js\parallax.js"></script>
+<script>
+    // Pretty simple huh?
+    var scene = document.getElementById('scene');
+    var parallax = new Parallax(scene);
+</script>

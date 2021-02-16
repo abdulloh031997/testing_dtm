@@ -14,6 +14,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use lubosdz\captchaExtended\CaptchaExtendedAction;
 
 /**
  * Site controller
@@ -59,11 +60,20 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+                'layout' => 'error',
             ],
             'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'class' => 'lubosdz\captchaExtended\CaptchaExtendedAction',
+                'mode' => 'math',
+                'mode' => CaptchaExtendedAction::MODE_MATH,
+                'resultMultiplier' => 1,
+                'lines' => 5,
+                'density' => 10,
+                'height' => 50,
+                'width' => 150,
+               
             ],
+            
         ];
     }
 
@@ -108,7 +118,7 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-        return $this->goHome();
+        return $this->redirect('login');
     }
 
     /**

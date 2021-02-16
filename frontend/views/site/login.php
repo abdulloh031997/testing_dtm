@@ -5,7 +5,9 @@
 /* @var $model \common\models\LoginForm */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
@@ -20,7 +22,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'username',['template' =>'{input}<label class="label-control" for="cname">{label}</label><div class="help-block with-errors"></div>'])->textInput(['id'=>'cname','autofocus' => false ,'class' =>'form-control-input']) ?>
 
                     <?= $form->field($model, 'password',['template' =>'{input}<label class="label-control" for="cname">{label}</label><div class="help-block with-errors"></div>'])->passwordInput(['id'=>'cemail','autofocus' => true ,'class' =>'form-control-input']) ?>
-                    <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                        'captchaAction' => Url::to('/site/captcha'),
+                        'template' => '<div class="text-center d-flex float-left">{image}</div> {input} ',
+                        'imageOptions' => [
+                            'class' => 'img-fluid',
+                            'style' => 'cursor:pointer; width: 100%;',
+                            'title' => 'Click to refresh the code',
+                        ],
+                        'options' => [
+                            'placeholder' => '',
+                            'class' => 'form-control-input w-50',
+                        ],
+                    ])->label(false) ?>
+
                     <div style="color:#999;margin-bottom: 10px">
                     Parolni esingizdan chiqardizmi <?= Html::a('Reset it', ['site/request-password-reset']) ?>.
                 </div>

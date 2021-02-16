@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use yii\helpers\Url;
 use Yii;
 use yii\base\Model;
 
@@ -14,6 +15,7 @@ class LoginForm extends Model
     public $rememberMe = true;
 
     private $_user;
+    public $verifyCode;
 
 
     /**
@@ -28,6 +30,9 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+            ['verifyCode', 'lubosdz\captchaExtended\CaptchaExtendedValidator',
+			'captchaAction' => Url::to('/site/captcha'),
+		],
         ];
     }
 
@@ -74,5 +79,14 @@ class LoginForm extends Model
         }
 
         return $this->_user;
+    }
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => Yii::t('app', 'Login'),
+            'password' => Yii::t('app', 'Password'),
+            'verifyCode'=> Yii::t('app', 'Verification code'),
+        ];
     }
 }

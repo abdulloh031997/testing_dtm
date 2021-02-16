@@ -8,9 +8,8 @@ use yii\helpers\Url;
      <!-- Text Logo - Use this if you don't have a graphic logo -->
      <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Evolo</a> -->
      <!-- Image Logo -->
-     <a class="navbar-brand logo-image text-dark" style="text-decoration: none; font-weight:bold;font-family:sans-serif;text-align: center;line-height: 24px; text-transform: uppercase;" href="/">
-        <!-- <img src="images/logo.svg" alt="alternative"> -->
-        Ilmiy-o'quv <br> amaliy markaz
+     <a class="navbar-brand logo-image text-dark" style="" href="/">
+        <img src="/images/version.png"alt="alternative">
     </a>
 
      <!-- Mobile Menu Toggle Button -->
@@ -26,13 +25,16 @@ use yii\helpers\Url;
                  <a class="nav-link page-scroll" href="#header">Bosh sahifa <span class="sr-only">(current)</span></a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link page-scroll" href="#services">Xizmatlar</a>
+                 <a class="nav-link page-scroll" href="<?=Url::to(['/#services'])?>">Xizmatlar</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link page-scroll" href="#pricing">Narxlar</a>
+                 <a class="nav-link page-scroll" href="<?=Url::to(['/#pricing'])?>">Narxlar</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link page-scroll" href="#request">So'rovlar</a>
+                 <a class="nav-link page-scroll" href="<?=Url::to(['/'])?>">Malaka oshirish</a>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link page-scroll" href="<?=Url::to(['/#request'])?>">So'rovlar</a>
              </li>
              <?php if (Yii::$app->user->isGuest) :?>
              <li class="nav-item" style="margin-top: -10px;">

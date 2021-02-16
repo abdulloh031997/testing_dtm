@@ -9,9 +9,9 @@ class DashboardController extends \yii\web\Controller
     {
         return $this->render('index');
     }
-    public function actionMessages()
+    public function actionList()
     {
-        return $this->render('messages');
+        return $this->render('list');
     }
     public function actionBookmarks()
     {

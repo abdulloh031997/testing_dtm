@@ -5,6 +5,7 @@
 
 use yii\helpers\Html;
 use frontend\assets\DashAsset;
+use yii\widgets\Breadcrumbs;
 
 DashAsset::register($this);
 ?>
@@ -77,7 +78,28 @@ DashAsset::register($this);
                 <div class="pcoded-inner-content">
                     <!-- Main-body start -->
                     <div class="main-body">
-                        <div class="page-wrapper">
+                    
+                        <div class="row page-body breadcrumb-page">
+                            <div class="col-12">
+                                <nav class="page-body breadcrumb-page">
+                                    <?php
+                                    echo Breadcrumbs::widget([
+                                        'options' => ['class' => 'breadcrumb rounded-pill '],
+                                        'homeLink' => [
+                                            'label' => '<i class="feather icon-home"></i></a></li>',
+                                            'url' => Yii::$app->homeUrl.'dashboard/index    ',
+                                            'encode' => false,
+                                        ],
+                                        'itemTemplate' => "<li class='breadcrumb-item'>{link}</li>\n",
+                                        'activeItemTemplate'=>"<li class='breadcrumb-item active' aria-current='page'>{link}</li>\n",
+                                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                                    ]);
+                                    ?>
+                                </nav>
+                            </div>
+                        </div>
+                                        
+                        <div class="page-wrapper card">
                             <?= $content ?>
                         </div>
                     </div>

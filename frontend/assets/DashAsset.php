@@ -24,7 +24,6 @@ class DashAsset extends AssetBundle
         '..\files\bower_components\jquery-ui\js\jquery-ui.min.js',
         '..\files\bower_components\popper.js\js\popper.min.js',
         '..\files\bower_components\bootstrap\js\bootstrap.min.js',
-        '..\files\bower_components\modernizr\js\modernizr.js',
         '..\files\assets\js\pcoded.min.js',
         '..\files\assets\js\vartical-layout.min.js',
         '..\files\assets\js\script.min.js',

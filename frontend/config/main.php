@@ -10,34 +10,60 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' =>'uz',
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'gridview' =>  [
+             'class' => '\kartik\grid\Module'
+         ]
+        ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
+        // 'assetManager' => [
+        //     'bundles' => [
+        //         'yii\bootstrap4\BootstrapAsset' => [
+        //             'css' => [],
+        //         ],
+        //         'yii\bootstrap4\BootstrapPluginAsset' => [
+        //             'js' => [],
+        //             'css' => [],
+        //         ],
+        //         'yii\bootstrap\BootstrapAsset' => [
+        //             'css' => [],
+        //         ],
+        //         'yii\bootstrap\BootstrapPluginAsset' => [
+        //             'js' => [],
+        //         ],
+        //         'yii\web\JqueryAsset' => [
+        //             'js' => YII_ENV_DEV ? [] : ['jquery.min.js'],
+        //         ],
+        //         'kartik\bs4dropdown\DropdownAsset' => [
+        //             'js' => [],
+        //             'css' => [],
+        //         ],
+        //     ]
+        // ],
         'assetManager' => [
+            'appendTimestamp' => true,
             'bundles' => [
-                'yii\bootstrap4\BootstrapAsset' => [
-                    'css' => [],
+                'yii\web\YiiAsset' => [
+                    'js'=>[]
                 ],
-                'yii\bootstrap4\BootstrapPluginAsset' => [
-                    'js' => [],
-                    'css' => [],
+                'yii\widgets\ActiveFormAsset' => [
+                    'js'=>[]
+                ],
+                'yii\web\JqueryAsset' => [
+                    'js'=>[]
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js'=>[]
                 ],
                 'yii\bootstrap\BootstrapAsset' => [
                     'css' => [],
                 ],
-                'yii\bootstrap\BootstrapPluginAsset' => [
-                    'js' => [],
-                ],
-                'yii\web\JqueryAsset' => [
-                    'js' => YII_ENV_DEV ? ['jquery.js'] : ['jquery.min.js'],
-                ],
-                'kartik\bs4dropdown\DropdownAsset' => [
-                    'js' => [],
-                    'css' => [],
-                ],
-            ]
+            ],
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -64,6 +90,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/' =>'/site/index/'
             ],
         ],
     ],
