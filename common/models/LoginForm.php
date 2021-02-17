@@ -15,7 +15,6 @@ class LoginForm extends Model
     public $rememberMe = true;
 
     private $_user;
-    public $verifyCode;
 
 
     /**
@@ -30,9 +29,7 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
-            ['verifyCode', 'lubosdz\captchaExtended\CaptchaExtendedValidator',
-			'captchaAction' => Url::to('/site/captcha'),
-		],
+          
         ];
     }
 
