@@ -1,5 +1,5 @@
-<div style="position: relative; width: 80%; margin: 0 auto;">
-<img alt="" src="../cer/rasm_02.jpg" style="width: 100%;">
+<div style="position: relative;">
+    <img alt="" src="../cer/rasm_02.jpg" style="width: 100%;">
     <div style="position: absolute; top: 4.3cm; left: 7cm; text-align: center;font-size: 19px;">
         <h1 style="text-align: center;">O’zbekiston Respublikasi</h1>
     </div>

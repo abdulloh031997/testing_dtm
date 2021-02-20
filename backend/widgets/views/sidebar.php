@@ -20,6 +20,7 @@ use yii\helpers\Url; ?>
                         <span>Malaka oshirish</span>
                     </a>
                 </li>
+                
                 <!-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-menu-2-fill"></i>

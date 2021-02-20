@@ -1,12 +1,34 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
-use backend\components\QrCode;
+use kartik\switchinput\SwitchInput;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\CertificateSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+$js = <<< JS
+    function sendRequest(ser,id){
+        $.ajax({
+            url:'/certificate/ser',
+            method:'post',
+            data:{
+                    ser:ser,
+                    id:id
+                },
+            success:function(data){
+                alert(data);
+            },
+            error:function(jqXhr,ser,error){
+                alert(error);
+            }
+        });
+    }
+JS;
+
+$this->registerJs($js, \yii\web\View::POS_READY);
 
 $this->title = 'Certificates';
 $this->params['breadcrumbs'][] = $this->title;
@@ -59,26 +81,72 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             // 'id',
             'lname',
             'fname',
             'mname',
+
+            [
+                'attribute' => 'ser',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    if(isset($model->ser) && $model->ser== 0){
+                        return '<button type="button" class="btn btn-outline-danger ser_one btn-sm waves-effect waves-light">Danger</button>';
+                    }
+                    elseif(isset($model->ser) && $model->ser == 1){
+                        return '<button type="button" class="btn btn-outline-success btn-sm waves-effect waves-light">Success</button>';
+                    }
+
+                }
+            ],
+            
+            // [
+            //     'attribute' => 'ser',
+            //     'format' => 'raw',
+            //     'value' => function($model){
+            //         if($model->ser==0){
+            //             return SwitchInput::widget([
+            //                 'name' => 'ser',
+            //                 'pluginOptions' => [
+            //                     'size' => 'mini',
+            //                     'onColor' => 'success',
+            //                     'offColor' => 'danger',
+            //                     'onText' => 'Active',
+            //                     'offText' => 'Inactive',
+            //                 ],
+            //                 'value' => true,
+            //             ]);
+            //         }
+            //         else if($model->ser==1){
+            //             return SwitchInput::widget([
+            //                 'name' => 'ser',
+            //                 'pluginOptions' => [
+            //                     'size' => 'mini',
+            //                     'onColor' => 'success',
+            //                     'offColor' => 'danger',
+            //                     'onText' => 'Active',
+            //                     'offText' => 'Inactive',
+            //                 ],
+            //                 'value' => false,
+            //             ]);;
+            //         }
+            //     }
+            // ],
             // 'bdate',
             //'psser',
             // 'phone',
             // 'special',
             // 'workplace',
-            [
-                'attribute' => 'qrcode',
-                'mergeHeader' => true,
-                'hAlign' => GridView::ALIGN_CENTER,
-                'format' => 'raw',
-                'value' => function($model){
-                    $text = $model->id;
-                    return  '<div>'.Html::img(QrCode::getQrCodeImageUrl($text, 'packet_'.$model->id)).'</div>';
-                },
-            ],
+            // [
+            //     'attribute' => 'qrcode',
+            //     'mergeHeader' => true,
+            //     'hAlign' => GridView::ALIGN_CENTER,
+            //     'format' => 'raw',
+            //     'value' => function($model){
+            //         $text = $model->id;
+            //         return  '<div>'.Html::img(QrCode::getQrCodeImageUrl($text, 'packet_'.$model->id)).'</div>';
+            //     },
+            // ],
             //'psnum',
             //'imie',
             //'create_at',
@@ -86,9 +154,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'kartik\grid\ActionColumn',
-                'template' => '{view} {update} {delete}',
+                'template' => '{print} {view} {update} {delete}',
                 'noWrap' => true,
                 'buttons' => [
+                    'print' => function($url, $model) {
+                        $url = Url::toRoute(['/certificate/print', 'id' => $model->id]);
+                        return Html::a(
+                            '<span class="fa fa-print"></span>',
+                            $url,
+                            [
+                                'title' => 'Печать',
+                                'data-pjax' => '0',
+                                'target' => '_blank',
+                            ]
+                        );
+                    },
 
                     'view' => function ($url, $model, $key) {
                         return Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id],
@@ -112,15 +192,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]);
                     },
                     'delete' => function ($url, $model, $key) {
-                        return Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->id],
+                        return Html::a('<i class="fas fa-trash"></i>', ['ser', 'id' => $model->id],
                             [
                                 'class' => 'label btn-link',
                                 'data' => [
-                                    'confirm' => 'Вы уверены, что хотите удалить этот элемент ?',
+                                    'confirm' => 'Sertifikat berasimi?',
                                     'method' => 'post',
                                 ],
-                                'title' => 'Ўчириш',
-                                'aria-label' => 'Ўчириш',
+                                'title' => 'Sertifikat berish',
+                                'aria-label' => 'Sertifikat',
 
                             ]);
                     },
@@ -132,3 +212,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::end(); ?>
 
 </div>
+
+<script type="text/javascript">
+ <?php ob_start() ?>
+    $('body').on('click', '.update-special', function () {
+        var id = $(this).data('id');
+        $.ajax({
+            type: 'get',
+            url: '<?= yii\helpers\Url::to(["special/update"]) ?>',
+            data: {id: id},
+            success: function (res) {
+                $('#create-update-form').html(res);
+                $('.create-update-special').modal('show');
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    });
+
+<?php $this->registerJs(ob_get_clean()) ?>
+</script>

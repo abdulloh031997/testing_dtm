@@ -1,5 +1,7 @@
-<div style="position: relative; width: 80%; margin: 0 auto;">
-<img alt="" src="../cer/rasm_02.jpg" style="width: 100%;">
+<div>
+<?php $n = 1 ; foreach ($model as $key => $one) : ?>
+<div style="position: relative;">
+    <img alt="" src="../cer/rasm_02.jpg" style="width: 100%;">
     <div style="position: absolute; top: 4.3cm; left: 7cm; text-align: center;font-size: 19px;">
         <h1 style="text-align: center;">O’zbekiston Respublikasi</h1>
     </div>
@@ -10,10 +12,10 @@
         <h1 style="text-align: center;">SERTIFIKAT</h1>
     </div>
     <div style="position: absolute; top: 10cm; left: 9.8cm; text-align: center;">
-        <h1 style="text-align: center;">MO <span>№</span>00001</h1>
+        <h1 style="text-align: center;">MO <span>№</span><?= sprintf('%05d', $n++); ?></h1>
     </div>
     <div style="position: absolute; top: 12.5cm; left:60%; transform: translateX(-50%); text-align: center;">
-        <div style="text-align: center; font-size: 20px; font-weight: bolder;"><?= $model['lname'] . ' ' . $model['fname'] . ' ' . $model['mname'] ?></div>
+        <div style="text-align: center; font-size: 20px; font-weight: bolder;"><?= $one['lname'] . ' ' . $one['fname'] . ' ' . $one['mname'] ?></div>
     </div>
     <div style="position: absolute; top: 13.4cm; left: 5.8cm; text-align: center;">
         <h3 style="text-align: center; line-height: 0.81cm;">
@@ -46,8 +48,9 @@
     <img alt="" src="../cer/qe.png" style="width: 89px; height: 89px;">
     </div>
 </div>
+<?php endforeach;?>
+</div>
 <script type="text/javascript">
-    document.title = '<?= $model->id?>';
     window.print();
     document.addEventListener('keydown', function (event) {
         const key = event.key; // const {key} = event; in ES6+

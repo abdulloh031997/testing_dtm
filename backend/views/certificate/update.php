@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Certificates', 'url' => ['index']]
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="certificate-update">
+<div class="certificate-update card p-3">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

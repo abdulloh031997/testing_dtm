@@ -22,6 +22,9 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <script type="text/javascript">
+        window.baseUrl = '<?= Yii::$app->homeUrl ?>';
+    </script>
 </head>
 <body data-sidebar="dark">
 <?php $this->beginBody() ?>

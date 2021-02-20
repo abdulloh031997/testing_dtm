@@ -37,7 +37,7 @@ class Certificate extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['psnum', 'imie'], 'integer'],
+            [['psnum', 'imie','ser'], 'integer'],
             [['create_at', 'update_at'], 'safe'],
             [['lname', 'fname', 'mname', 'bdate', 'psser', 'phone', 'special', 'workplace'], 'string', 'max' => 255],
         ];

@@ -9,9 +9,8 @@ $this->title = 'Create Certificate';
 $this->params['breadcrumbs'][] = ['label' => 'Certificates', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="certificate-create">
+<div class="certificate-create card p-3">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

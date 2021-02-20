@@ -8,6 +8,7 @@ use backend\models\CertificateSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use kartik\mpdf\Pdf;
 
 /**
  * CertificateController implements the CRUD actions for Certificate model.
@@ -52,8 +53,9 @@ class CertificateController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
+        $model = $this->findModel($id);
+        return $this->renderPartial('view', [
+            'model' => $model,
         ]);
     }
 
@@ -94,6 +96,22 @@ class CertificateController extends Controller
             'model' => $model,
         ]);
     }
+    public function actionPrint($id)
+    {
+        $this->layout='cer';
+        $model = $this->findModel($id);
+        return $this->renderPartial('print', [
+            'model' => $model,
+        ]);
+    }
+    public function actionAPrint()
+    {
+        $this->layout='cer';
+        $model = Certificate::find()->asArray()->all();
+        return $this->renderPartial('a-print', [
+            'model' => $model,
+        ]);
+    }
 
     /**
      * Deletes an existing Certificate model.
@@ -105,9 +123,27 @@ class CertificateController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
+    public function actionSer()
+    {
+        $id = Yii::$app->request->post('id');
+        $ser = Yii::$app->request->post('ser');
+        $model = $this->findModel($id);
+        if($ser == true)
+        {
+            $model->ser = 0;
+            debug($model->ser);
+            exit();
+            $model->save(false);
+        }
+        elseif($ser == false)
+        {
+            $model->ser = 1;
+            $model->save(false);
+        }
+    }
+    
 
     /**
      * Finds the Certificate model based on its primary key value.
