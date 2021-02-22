@@ -14,7 +14,6 @@ class SignupForm extends Model
     public $email;
     public $password;
 
-
     /**
      * {@inheritdoc}
      */
@@ -25,7 +24,6 @@ class SignupForm extends Model
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
-
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
@@ -49,6 +47,7 @@ class SignupForm extends Model
         }
         
         $user = new User();
+        $user->status =10;
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
@@ -56,6 +55,13 @@ class SignupForm extends Model
         $user->generateEmailVerificationToken();
         return $user->save() && $this->sendEmail($user);
 
+    }
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Username kititing',
+            'password' => 'Pochtangizni kiriting',
+        ];
     }
 
     /**

@@ -20,6 +20,12 @@ use yii\helpers\Url; ?>
                         <span>Malaka oshirish</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?= Url::to(['certificate/a-print']); ?>" target="_blank" class="waves-effect">
+                        <i class=" ri-shield-star-line"></i>
+                        <span>Sertifikat olganlar</span> <span><i class="ri-star-fill"></i></span>
+                    </a>
+                </li>
                 
                 <!-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">

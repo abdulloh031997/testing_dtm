@@ -106,8 +106,7 @@ class CertificateController extends Controller
     }
     public function actionAPrint()
     {
-        $this->layout='cer';
-        $model = Certificate::find()->asArray()->all();
+        $model = Certificate::find()->where(['ser' =>1])->asArray()->all();
         return $this->renderPartial('a-print', [
             'model' => $model,
         ]);
@@ -130,20 +129,36 @@ class CertificateController extends Controller
         $id = Yii::$app->request->post('id');
         $ser = Yii::$app->request->post('ser');
         $model = $this->findModel($id);
-        if($ser == true)
-        {
-            $model->ser = 0;
-            debug($model->ser);
-            exit();
-            $model->save(false);
-        }
-        elseif($ser == false)
+        if($ser == 0)
         {
             $model->ser = 1;
-            $model->save(false);
+            $model->save();
+        }
+        elseif($ser == 1)
+        {
+            $model->ser = 0;
+            $model->save();
         }
     }
-    
+
+    public function actionPerson($psser,$psnum,$imie)
+    {
+
+        $this->layout = false;
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+
+        if (empty($psser) || empty($psnum) || empty($imie)) {
+            $error_message = "SHIR (PNFL),PASPORT SERIYA,PASPORT RAQAM kiriting!";
+            return $this->renderAjax('views', [
+                'error_message' => $error_message,
+            ]);
+        }
+        $model = new Person();
+        $res = $model::getData($psser,$psnum,$imie,1);
+        return $this->renderAjax('views', [
+            'res' => $res,
+        ]);
+    }
 
     /**
      * Finds the Certificate model based on its primary key value.

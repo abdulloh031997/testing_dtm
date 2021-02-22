@@ -81,8 +81,8 @@ class LoginForm extends Model
     {
         return [
             'id' => 'ID',
-            'username' => Yii::t('app', 'Login'),
-            'password' => Yii::t('app', 'Password'),
+            'username' => Yii::t('app', 'Login kiriting'),
+            'password' => Yii::t('app', 'Parolingizni kiriting'),
             'verifyCode'=> Yii::t('app', 'Verification code'),
         ];
     }

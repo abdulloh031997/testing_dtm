@@ -1,36 +1,46 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
-use backend\assets\AppAsset;
+use backend\assets\LoginAsset;
 use yii\helpers\Html;
 
-AppAsset::register($this);
-?>
-<?php $this->beginPage() ?>
+LoginAsset::register($this);
+
+$this->beginPage(); ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
+
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="<?= $this->imagesUrl('images/favicon.ico'); ?>">
+    <?php $this->registerCsrfMetaTags(); ?>
+    <title><?= Html::encode($this->title); ?> &bull; AVLO UZ</title>
+    <?php $this->head(); ?>
 </head>
-<body class="blank">
-<?php $this->beginBody() ?>
 
-<div class="container">
+<body class="auth-body-bg">
+    <?php $this->beginBody(); ?>
 
-    <div class="wrap">
-        <?= $content ?>
-    </div>
+    <?php
+    $flash = Yii::$app->session->getAllFlashes();
 
-</div>
+    if (!empty($flash)) :
+        foreach ($flash as $type => $message) :
+            $js = <<<JS
+        Swal.fire({
+          type: "{$type}",
+          title: "{$message}",
+        })
+JS;
+            $this->registerJs($js, \yii\web\View::POS_LOAD);
+        endforeach;
+    endif; ?>
 
-<?php $this->endBody() ?>
+    <?= $content ?>
+
+    <?php $this->endBody(); ?>
 </body>
+
 </html>
-<?php $this->endPage() ?>
+<?php $this->endPage(); ?>

@@ -21,7 +21,8 @@
         "lubosdz/yii2-captcha-extended": "^1.0",
         "kartik-v/yii2-grid": "dev-master",
         "kartik-v/yii2-widget-switchinput": "dev-master",
-        "kartik-v/yii2-mpdf": "dev-master"
+        "kartik-v/yii2-mpdf": "dev-master",
+        "2amigos/qrcode-library": "^1.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

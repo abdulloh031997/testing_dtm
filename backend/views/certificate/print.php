@@ -1,3 +1,9 @@
+<?php
+
+use backend\components\QrCode as ComponentsQrCode;
+use Da\QrCode\QrCode;
+
+?>
 <div style="position: relative;">
     <img alt="" src="../cer/rasm_02.jpg" style="width: 100%;">
     <div style="position: absolute; top: 4.3cm; left: 7cm; text-align: center;font-size: 19px;">
@@ -39,11 +45,14 @@
     </div>
     <div style="position: absolute; top: 23.8cm; left: 6.5cm; text-align: center;">
         <h3 style="text-align: center;">
-        Sana <span>_______________<span class="_ _0"> </span></span> Qayd raqami <span>___________</span>
+        Sana <span>_______________<span> </span></span> Qayd raqami <span>___________</span>
         </h3>
     </div>
     <div style="position: absolute; top: 25.5cm; right: 1.5cm; text-align: center;">
-    <img alt="" src="../cer/qe.png" style="width: 89px; height: 89px;">
+        <?php $qr = (new QrCode('http://ilmiy.dtm.uz/certificate/view?id='.$model['id']))->setSize(89, 89)
+                ->setMargin(10)
+                ->useForegroundColor(0, 0, 0);
+            echo '<img src="' . $qr->writeDataUri() . '">'?>
     </div>
 </div>
 <script type="text/javascript">
