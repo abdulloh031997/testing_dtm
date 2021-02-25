@@ -13,19 +13,19 @@
                             <span class="pcoded-mtext">Bosh sahifa</span>
                         </a>
                     </li>
-                    <li class="">
+                    <!-- <li class="">
                         <a href="#">
                             <span class="pcoded-micon"><i class="icofont icofont-listing-number"></i></span>
                             <span class="pcoded-mtext">Fanlar</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="">
                         <a href="<?=Url::to(['dashboard/regions/'])?>">
                             <span class="pcoded-micon"><i class="icofont icofont-listing-number"></i></span>
                             <span class="pcoded-mtext">Test Yechish</span>
                         </a>
                     </li>
-                    <li class="">
+                    <!-- <li class="">
                         <a href="#">
                             <span class="pcoded-micon"><i class="icofont icofont-blood-test"></i></span>
                             <span class="pcoded-mtext">Yangi testlar</span>
@@ -79,7 +79,7 @@
                             </li>
 
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </nav>

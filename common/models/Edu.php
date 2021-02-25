@@ -25,6 +25,10 @@ class Edu extends \yii\db\ActiveRecord
     {
         return 'edu';
     }
+    public static function primaryKey()
+    {
+        return ['id'];
+    }
 
     /**
      * {@inheritdoc}

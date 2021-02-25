@@ -7,10 +7,17 @@ use Yii;
 /**
  * This is the model class for table "region".
  *
- * @property int $id
+ * @property string|null $id
+ * @property string|null $name
+ * @property string|null $create_at
+ * @property string|null $update
+ * @property string|null $name_ru
+ * @property string|null $order_id
+ * @property string|null $name_qq
+ * @property string|null $xtv_id
+ * @property string|null $dtm_id
  * @property string|null $name_uz
- *
- * @property Edu[] $edus
+ * @property string|null $parent_id
  */
 class Region extends \yii\db\ActiveRecord
 {
@@ -21,14 +28,17 @@ class Region extends \yii\db\ActiveRecord
     {
         return 'region';
     }
-
+    public static function primaryKey()
+    {
+        return ['id'];
+    }
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['name_uz'], 'string', 'max' => 255],
+            [['name', 'create_at', 'update', 'name_ru', 'order_id', 'name_qq', 'xtv_id', 'dtm_id', 'name_uz', 'parent_id'], 'string', 'max' => 255],
         ];
     }
 
@@ -38,18 +48,16 @@ class Region extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'name' => 'Name',
+            'create_at' => 'Create At',
+            'update' => 'Update',
+            'name_ru' => 'Name Ru',
+            'order_id' => 'Order ID',
+            'name_qq' => 'Name Qq',
+            'xtv_id' => 'Xtv ID',
+            'dtm_id' => 'Dtm ID',
             'name_uz' => 'Name Uz',
+            'parent_id' => 'Parent ID',
         ];
-    }
-
-    /**
-     * Gets query for [[Edus]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEdus()
-    {
-        return $this->hasMany(Edu::className(), ['region_id' => 'id']);
     }
 }

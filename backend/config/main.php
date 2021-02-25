@@ -26,6 +26,10 @@ return [
         'files' => [
            'class' => 'thyseus\files\FileWebModule',
        ],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ],
+
     ],
     
     'on beforeAction' => function ($event) {

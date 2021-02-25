@@ -1,48 +1,38 @@
-<div style="position: relative; width: 90%; margin: 0 auto;">
-    <img alt="" src="../cer/rasm_02.jpg" style="width: 100%;">
-    <div style="position: absolute; top: 7.3cm; left:50%; transform: translateX(-50%); text-align: center;font-size: 19px;">
-        <h1 style="text-align: center;">O’zbekiston Respublikasi</h1>
-    </div>
-    <div style="position: absolute; top: 9.5cm; left:50%; transform: translateX(-50%); text-align: center; font-size: 18px;">
-        <h2 style="text-align: center;">Malaka oshirish haqida</h2>
-    </div>
-    <div style="position: absolute; top: 11cm; left:50%; transform: translateX(-50%); text-align: center;">
-        <h1 style="text-align: center;">SERTIFIKAT</h1>
-    </div>
-    <div style="position: absolute; top: 13cm; left:50%; transform: translateX(-50%); text-align: center;">
-        <h1 style="text-align: center;">MO <span>№</span><?= sprintf('%05d', $n++); ?></h1>
-    </div>
-    <div style="position: absolute; top: 15.5cm; left:50%; transform: translateX(-50%); text-align: center;">
-        <div style="text-align: center; font-size: 20px; font-weight: bolder;"><?= $model['lname'] . ' ' . $model['fname'] . ' ' . $model['mname'] ?></div>
-    </div>
-    <div style="position: absolute; top: 16.4cm;left:50%; transform: translateX(-50%); text-align: center;">
-        <h3 style="text-align: center; line-height: 0.81cm;">
-        2021 yil 18-fevraldan 2021 25-fevralgacha <br>
-        Davlat test markazi huzuridagi Ilmiy-o’quv amaliy markazida <br>
-        jami 36 soatlik <br>
-        Bilimlarni baholash testlarini ishlab chiqish <br>
-        nazariyasi va amaliyoti kursi bo’yicha malakasini <br>
-        oshirdi.
-        <br>
-        </h3>
-    </div>
-    <div style="position: absolute; top: 23cm; left: 6.5cm; text-align: center;">
-        <h3 style="text-align: center;">
-            Muhr o’rni
-        </h3>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div style="position: absolute; top: 25cm; left: 6.5cm; text-align: center;">
-        <h3 style="text-align: center;">
-        Boshliq <span>________________</span> A.A.Baratov
-        </h3>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div style="width: 60%; margin: 0 auto;margin-top: 200px;">
+        <div class="card text-center">
+            <?php if ($model->ser == 1) : ?>
+                <div class="card-header bg-success text-white font-weight-bold">
+                    Sertifikat berilgan
+                </div>
+            <?php elseif($model->ser == 0) : ?>
+                <div class="card-header bg-danger text-white font-weight-bold">
+                    Sertifikat berilmagan
+                </div>
+            <?php endif; ?>
+            <div class="card-body">
+                <h5 class="card-title"><?=$model['fname'].' '.$model['lname'].' '.$model['mname']?></h5>
+                <p class="card-text">Bilimlarni baholash testlarini ishlab chiqish <br>
+                nazariyasi va amaliyoti kursi bo’yicha malakasini <br>
+                oshirdi.</p>
+                <a href="https://dtm.uz/page/ilmiy_markaz" class="btn btn-primary">Go</a>
+            </div>
+            <div class="card-footer text-muted">
+                Ilmiy-o’quv amaliy markazi
+            </div>
+        </div>
     </div>
-    <div style="position: absolute; top: 26.8cm; left: 6.5cm; text-align: center;">
-        <h3 style="text-align: center;">
-        Sana <span>_______________<span class="_ _0"> </span></span> Qayd raqami <span>___________</span>
-        </h3>
-    </div>
-    <div style="position: absolute; top: 28.5cm; right: 1.5cm; text-align: center;">
-    <img alt="" src="../cer/qe.png" style="width: 89px; height: 89px;">
-    </div>
-</div>
+</body>
+
+</html>

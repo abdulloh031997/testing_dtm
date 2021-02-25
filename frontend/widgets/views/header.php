@@ -28,13 +28,7 @@ use yii\helpers\Url;
                  <a class="nav-link page-scroll" href="<?=Url::to(['/#services'])?>">Xizmatlar</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link page-scroll" href="<?=Url::to(['/#pricing'])?>">Narxlar</a>
-             </li>
-             <li class="nav-item">
                  <a class="nav-link page-scroll" href="<?=Url::to(['/'])?>">Malaka oshirish</a>
-             </li>
-             <li class="nav-item">
-                 <a class="nav-link page-scroll" href="<?=Url::to(['/#request'])?>">So'rovlar</a>
              </li>
              <?php if (Yii::$app->user->isGuest) :?>
              <li class="nav-item" style="margin-top: -10px;">
@@ -45,7 +39,7 @@ use yii\helpers\Url;
               <li class="nav-item dropdown" style="margin-top: -10px;">
                     <a class="dropdown-toggle btn-solid-reg text-light" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">Kirish</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">Profile</span></a>
+                        <a class="dropdown-item" href="<?=Url::to(['dashboard/index'])?>"><span class="item-text">Profile</span></a>
                         <div class="dropdown-items-divide-hr"></div>
                         <?= Html::beginForm(\yii\helpers\Url::base(true) . '/site/logout', "POST");?>
                             <button type="submit" class="dropdown-item"><i class="icon-material-outline-power-settings-new"></i><span class="item-text">Log out</span></button>

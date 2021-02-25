@@ -53,6 +53,7 @@ class CertificateController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout='cer';
         $model = $this->findModel($id);
         return $this->renderPartial('view', [
             'model' => $model,
@@ -106,7 +107,7 @@ class CertificateController extends Controller
     }
     public function actionAPrint()
     {
-        $model = Certificate::find()->where(['ser' =>1])->asArray()->all();
+        $model = Certificate::find()->where(['ser' =>0])->asArray()->all();
         return $this->renderPartial('a-print', [
             'model' => $model,
         ]);
@@ -141,25 +142,7 @@ class CertificateController extends Controller
         }
     }
 
-    public function actionPerson($psser,$psnum,$imie)
-    {
-
-        $this->layout = false;
-        \Yii::$app->response->format = Response::FORMAT_JSON;
-
-        if (empty($psser) || empty($psnum) || empty($imie)) {
-            $error_message = "SHIR (PNFL),PASPORT SERIYA,PASPORT RAQAM kiriting!";
-            return $this->renderAjax('views', [
-                'error_message' => $error_message,
-            ]);
-        }
-        $model = new Person();
-        $res = $model::getData($psser,$psnum,$imie,1);
-        return $this->renderAjax('views', [
-            'res' => $res,
-        ]);
-    }
-
+   
     /**
      * Finds the Certificate model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
